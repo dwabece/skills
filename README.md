@@ -20,7 +20,7 @@ Every ticket gets acceptance criteria that define when the work is done. If the 
 
 Before it changes anything, the skill checks every acceptance criterion against the code and asks all its questions in one message. Then it assigns the ticket to you and moves it to `In progress`. Each criterion that isn't met yet gets a failing test first and then the fix
 
-You get a pull request that lists the evidence for every criterion. Code review (the `code-review` skill) has already run on it and the fixes are committed, unless you passed `--no-review`. The ticket moves to `Review`. Nothing gets merged
+You get a pull request that lists the evidence for every criterion. Code review (the `code-review` skill) has already run on it and the fixes are committed, unless you passed `--no-review`. The ticket moves to `In review`. Nothing gets merged
 
 ## Setup
 
@@ -31,9 +31,11 @@ repo: https://github.com/<owner>/<repo>
 https://github.com/users/<owner>/projects/<n>
 status_field: Status
 in_progress: In progress
-review: Review
+review: In review
 ```
 
 The last three lines are optional and show the defaults. They name the board's status field and the two columns `zapierdalasz` moves the ticket to. Without a passport `jira-ticket-creator` asks where the ticket goes and saves your answer in `AI_PASSPORT.md`
 
 `gh` needs the `project` scope for the board: `gh auth refresh -s project`
+
+`zapierdalasz` needs `gh` 2.97 or newer
