@@ -1,7 +1,7 @@
 ---
 name: zapierdalasz
 argument-hint: "<issue number or URL> [--no-review]"
-description: "Takes one GitHub issue from the board to a reviewed pull request: reads the ticket, checks its Acceptance Criteria against the code, resolves blocking questions with the user once, claims the ticket, implements on a branch with tests, opens a PR, runs code review with fixes, and hands the ticket over to the Review column. Use when the user points at a ticket and wants it done: \"zapierdalaj z tym\", \"weź ticket #123\", \"zrób ten ticket\", \"implement #123\", \"pick up this issue\", \"take this ticket\", or via the /zapierdalasz slash command. Do NOT use to write or refine a ticket (that is jira-ticket-creator), to review someone else's PR, or for ad-hoc fixes that have no ticket."
+description: "Takes one GitHub issue from the board to a reviewed pull request: reads the ticket, checks its Acceptance Criteria against the code, resolves blocking questions with the user once, claims the ticket, implements on a branch with tests, opens a PR, runs code review with fixes, and hands the ticket over to the Review column. Use when the user points at a ticket and wants it done: \"zapierdalaj z tym\", \"weź ticket #123\", \"zrób ten ticket\", \"implement #123\", \"pick up this issue\", \"take this ticket\", or via the /zapierdalasz slash command. Do NOT use to write a ticket (jira-ticket-creator) or refine one (refine), to review someone else's PR, or for ad-hoc fixes that have no ticket."
 ---
 
 # zapierdalasz: ticket to reviewed PR
@@ -270,8 +270,9 @@ The ticket binds like this:
   the diff.
 - **Suggested approach** is advice: preferred where Step 2 confirmed it, overruled by the code as
   it is, and the PR says so.
-- **Dev Notes** warnings (deprecated modules, conventions) are rules. One the code contradicts
-  in Step 2 becomes a Step 3 question.
+- **Dev Notes** warnings (deprecated modules, conventions) and `Decided:` lines (the user's
+  decisions, written by `refine`) are rules. One the code contradicts in Step 2 becomes a Step 3
+  question.
 
 Working rules:
 
