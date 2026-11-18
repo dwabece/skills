@@ -1,6 +1,6 @@
 # Skills
 
-Two skills that work as a pair. `jira-ticket-creator` writes a ticket and files it as a GitHub issue, `zapierdalasz` implements the ticket and opens a pull request
+Three skills for one flow. `jira-ticket-creator` writes a ticket and files it as a GitHub issue. `refine` settles the ticket's open decisions with you, then `zapierdalasz` implements it and opens a pull request
 
 ## jira-ticket-creator
 
@@ -11,6 +11,18 @@ Two skills that work as a pair. `jira-ticket-creator` writes a ticket and files 
 The skill interviews you one question at a time. With `--disco` it also reads the code so the ticket names the files and tests the change touches
 
 Every ticket gets acceptance criteria that define when the work is done. If the work is too big for one ticket, the skill proposes an epic with sub-tickets. You see the ticket in the chat before the skill files it and adds it to the project board. Tell the skill if you want the ticket to stay in the chat
+
+## refine
+
+```
+/refine <issue number, URL or ticket file>
+```
+
+The skill reads the ticket and the code it touches, then shows you the decisions that are still open. It asks them one at a time and every question comes with a recommendation. What the code can answer is never asked. Questions with a safe default show up as assumptions you can object to
+
+After you confirm the summary the skill rewrites the ticket. Each decision lands where `zapierdalasz` has to follow it, for example as an acceptance criterion or a `Decided:` line in `Dev Notes`. The reasons go into one comment on the issue. Say "wystarczy" at any point and the rest stays in `Spikes` as open questions
+
+A ticket kept as a markdown file works too, pass its path
 
 ## zapierdalasz
 
@@ -24,7 +36,7 @@ You get a pull request that lists the evidence for every criterion. Code review 
 
 ## Setup
 
-Both skills call the `gh` CLI, so log in first. They look for these lines in the project passport, a file named like `AI_PASSPORT.md` in the repo root or in `docs/`:
+All three call the `gh` CLI, so log in first. They look for these lines in the project passport, a file named like `AI_PASSPORT.md` in the repo root or in `docs/`:
 
 ```
 repo: https://github.com/<owner>/<repo>
@@ -38,4 +50,6 @@ The last three lines are optional and show the defaults. They name the board's s
 
 `gh` needs the `project` scope for the board: `gh auth refresh -s project`
 
-`zapierdalasz` needs `gh` 2.97 or newer
+`refine` and `zapierdalasz` need `gh` 2.97 or newer
+
+`refine` reads the ticket rules from `jira-ticket-creator`, so install the two side by side
